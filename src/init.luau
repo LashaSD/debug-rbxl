@@ -505,13 +505,12 @@ do
         local key = Unstable_Persist_Key(1);
         if sum_data[key] == nil then
             assert(count_data[key] == nil);
-
             sum_data[key] = value;
             count_data[key] = 1;
         else
             assert(count_data[key] ~= nil);
-            sum_data[key] += 1;
-            count_data[key] += value;
+            sum_data[key] += value;
+            count_data[key] += 1;
         end
 
         return sum_data[key] / count_data[key];
