@@ -319,7 +319,7 @@ do
 
     function Debug.Make_Line(origin: Vec3?, v: Vec3?)
         origin = (origin or vector.zero) :: vector;
-        v = (v :: vector.zero) :: vector;
+        v = (v or vector.zero) :: vector;
 
         Init_Line_Rendering_If_Not_Initialized();
 

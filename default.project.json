@@ -7,7 +7,7 @@
                 "Debug_Test": {
                     "$path": "./test/",
                     "Debug_Library": {
-                        "$path": "./src/"
+                        "$path": "./src/Debug.luau"
                     }
                 }
             }

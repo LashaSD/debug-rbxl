@@ -6,7 +6,7 @@ the purpose of this library is to speed up the debugging process in roblox game 
 there are libraries, that support displaying data on the screen as UI or as gizmos with an immediate or retained API, but the problem i frequently faced while debugging with those libraries is the time it took to properly set it up, and the amount of state i needed to manage. i needed something, that doesn't distract me from the solution i'm debugging (or at least minimizes the distraction), which is why i decided to write this module.
 
 ## Setup
-just download or copy the `src/init.luau` file into your project and you're ready to go. one of the main reasons i keep the module to a single file is so that it's easy to import into your project, without the need of package managers.
+just download or copy the `src/Debug.luau` file into your project and you're ready to go. one of the main reasons i keep the module to a single file is so that it's easy to import into your project, without the need of package managers.
 
 ## Getting Started
 there is no initializing required from your end, you can just `require()` the module and call any function you need.
