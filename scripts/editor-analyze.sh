@@ -2,7 +2,7 @@
 
 set -e
 
-rojo sourcemap test.project.json -o sourcemap.json
+rojo sourcemap default.project.json -o sourcemap.json
 if [ ! -f ./globalTypes.d.lua ]; then
     curl -O -s https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.lua
 fi

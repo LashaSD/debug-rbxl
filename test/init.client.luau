@@ -1,4 +1,3 @@
-
 -- Import
 local Debug = require(script.Debug_Library);
 

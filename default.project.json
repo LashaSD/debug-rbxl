@@ -1,6 +1,16 @@
 {
-    "name": "Debug",
+    "name": "debug-rbxl",
     "tree": {
-        "$path": "./src/"
+        "$className": "DataModel",
+        "StarterPlayer": {
+            "StarterPlayerScripts": {
+                "Debug_Test": {
+                    "$path": "./test/",
+                    "Debug_Library": {
+                        "$path": "./src/"
+                    }
+                }
+            }
+        }
     }
 }

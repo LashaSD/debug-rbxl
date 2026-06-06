@@ -1,3 +1,3 @@
 #!/bin/bash
-rojo sourcemap --watch test.project.json --output sourcemap.json --include-non-scripts &
-rojo serve
+rojo sourcemap --watch default.project.json --output sourcemap.json --include-non-scripts &
+rojo serve default.project.json
