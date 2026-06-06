@@ -385,10 +385,10 @@ do
 
     local point_folder: Instance = nil :: any;
 
-    local point_render_queue_old: {vector} = {};
-    local point_render_queue_new: {vector} = {};
-    local point_colors: {Color3} = {};
-    local point_radii: {number} = {};
+    local point_pos_queue: {vector} = {};
+    local point_color_queue: {Color3} = {};
+    local point_radius_queue: {number} = {};
+    local old_queue_size = 0;
 
     local point_rendering_is_on = false;
 
@@ -406,8 +406,8 @@ do
     local function Render_Points()
         debug.profilebegin("Render_Points()");
 
-        local old_len = #point_render_queue_old;
-        local new_len = #point_render_queue_new;
+        local old_len = old_queue_size;
+        local new_len = #point_pos_queue;
 
         if new_len < old_len then
             for i = new_len + 1, old_len do
@@ -427,15 +427,15 @@ do
         end
 
         for i = 1, new_len do
-            points[i].CFrame = CFrame.new(point_render_queue_new[i] :: any);
-            points[i].Color3 = point_colors[i];
-            points[i].Radius = point_radii[i];
+            points[i].CFrame = CFrame.new(point_pos_queue[i] :: any);
+            points[i].Color3 = point_color_queue[i];
+            points[i].Radius = point_radius_queue[i];
         end
 
-        point_render_queue_old, point_render_queue_new = point_render_queue_new, point_render_queue_old;
-        table.clear(point_render_queue_new);
-        table.clear(point_colors);
-        table.clear(point_radii);
+        old_queue_size = new_len;
+        table.clear(point_pos_queue);
+        table.clear(point_color_queue);
+        table.clear(point_radius_queue);
 
         debug.profileend();
     end
@@ -463,8 +463,8 @@ do
     function Debug.Draw_Point(pos: Vec3)
         pos = pos :: vector;
         Init_Point_Rendering_If_Not_Initialized();
-        assert(#point_render_queue_new == #point_colors);
-        assert(#point_render_queue_new == #point_radii);
+        assert(#point_pos_queue == #point_color_queue);
+        assert(#point_pos_queue == #point_radius_queue);
 
         local color = draw_color_stack[#draw_color_stack] or POINT_DEFAULT_COLOR;
         if next_draw_color then
@@ -478,9 +478,9 @@ do
             next_radius = nil;
         end
 
-        table.insert(point_render_queue_new, pos);
-        table.insert(point_radii, radius);
-        table.insert(point_colors, color);
+        table.insert(point_pos_queue, pos);
+        table.insert(point_radius_queue, radius);
+        table.insert(point_color_queue, color);
     end
 
     function Debug.Push_Point_Radius(radius: number)
