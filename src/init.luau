@@ -317,9 +317,9 @@ do
         table.insert(queue, target);
     end
 
-    function Debug.Make_Line(origin: Vec3, v: Vec3)
-        origin = origin :: vector;
-        v = v :: vector;
+    function Debug.Make_Line(origin: Vec3?, v: Vec3?)
+        origin = (origin or vector.zero) :: vector;
+        v = (v :: vector.zero) :: vector;
 
         Init_Line_Rendering_If_Not_Initialized();
 
@@ -355,7 +355,7 @@ do
     function Debug._Persist_Line()
         local key = Unstable_Persist_Key(1);
         if line_data[key] == nil then
-            line_data[key] = Debug.Make_Line(vector.zero, vector.zero);
+            line_data[key] = Debug.Make_Line();
         end
         return line_data[key];
     end
