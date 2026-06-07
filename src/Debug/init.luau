@@ -34,7 +34,8 @@ end
 ]=]
 -- this function must be global, because it shouldnt be inlined
 function Unstable_Persist_Key<T>(depth: number?): string
-    local source: string, line: string = debug.info(depth and depth + 2 or 3, "sl");
+    depth = depth or 0;
+    local source: string, line: string = debug.info(depth + 2, "sl");
     return source .. line;
 end
 
@@ -192,7 +193,7 @@ do
             value = (math.round(value * NUMBER_ROUNDING) / NUMBER_ROUNDING);
         end
 
-        local color = next_text_color or table.remove(text_color_stack) or DEFAULT_VALUE_COLOR;
+        local color = next_text_color or text_color_stack[#text_color_stack] or DEFAULT_VALUE_COLOR;
         next_text_color = nil;
 
         table.insert(text_queue, text);
@@ -383,8 +384,6 @@ do
 
     local points: {Point_Instance} = {};
 
-    local point_folder: Instance = nil :: any;
-
     local point_pos_queue: {vector} = {};
     local point_color_queue: {Color3} = {};
     local point_radius_queue: {number} = {};
@@ -441,7 +440,7 @@ do
     end
 
     local function Init_Point_Rendering()
-        point_folder = workspace:WaitForChild("Terrain");
+        local point_folder = workspace:WaitForChild("Terrain");
 
         for i = 1, INITIAL_POINT_POOL_SIZE do
             local p = Instance.new("SphereHandleAdornment");

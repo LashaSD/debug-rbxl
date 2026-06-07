@@ -4,10 +4,13 @@
         "$className": "DataModel",
         "StarterPlayer": {
             "StarterPlayerScripts": {
-                "Debug_Test": {
+                "Test": {
                     "$path": "./test/",
-                    "Debug_Library": {
-                        "$path": "./src/Debug.luau"
+                    "Debug": {
+                        "$path": "./src/Debug/"
+                    },
+                    "Examples": {
+                        "$path": "./examples/"
                     }
                 }
             }
